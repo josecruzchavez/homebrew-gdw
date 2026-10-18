@@ -38,10 +38,11 @@ cask "gdw-mirror" do
     display icon next to the clock. The first time you press "Share screen",
     macOS will ask for Screen Recording permission.
 
-    The app is ad-hoc signed, not notarized. Homebrew downloads it without the
-    quarantine attribute, so Gatekeeper will not block it. If you install the
-    .zip manually from a browser, allow it once in
-    System Settings → Privacy & Security.
+    The app is ad-hoc signed, not notarized, and Homebrew quarantines cask
+    downloads, so macOS blocks the first launch. Approve it once in
+    System Settings → Privacy & Security → "Open Anyway", or run:
+
+      xattr -dr com.apple.quarantine "/Applications/GDW Mirror Host.app"
 
     The Windows receiver is a separate portable .exe, available at
     https://mirror.gdw.mx/#download

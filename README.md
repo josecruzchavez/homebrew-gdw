@@ -55,12 +55,20 @@ brew uninstall --zap --cask gdw-mirror   # borra también preferencias y cachés
 - `depends_on macos: ">= :ventura"`.
 - `caveats` explican la barra de menús, el permiso de grabación de pantalla y la firma ad-hoc.
 
-### Firma
+### Firma y cuarentena
 
-La app está firmada **ad-hoc**, sin Developer ID ni notarización. Homebrew descarga los
-archivos con `curl`, así que **no llevan el atributo de cuarentena** y Gatekeeper no las
-bloquea. Los `.zip` bajados con un navegador sí lo llevan y requieren autorización manual
-una vez.
+La app está firmada **ad-hoc**, sin Developer ID ni notarización. Homebrew 7 aplica el
+atributo de cuarentena a las descargas de casks, así que macOS bloqueará el primer
+arranque. El cask lo explica en `caveats`; el usuario autoriza una vez desde
+**Ajustes del Sistema → Privacidad y seguridad → Abrir de todas formas**, o ejecuta:
+
+```sh
+xattr -dr com.apple.quarantine "/Applications/GDW Mirror Host.app"
+```
+
+La única forma de eliminar el aviso por completo es un Developer ID de Apple con
+notarización. `brew audit` no falla por esto: la auditoría de firma solo se ejecuta en
+taps oficiales o con `--signing`.
 
 ## Actualizar el cask cuando salga una versión
 
