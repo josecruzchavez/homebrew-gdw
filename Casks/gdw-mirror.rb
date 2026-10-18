@@ -1,13 +1,13 @@
 cask "gdw-mirror" do
-  version "0.2.0"
+  version "0.2.1"
 
   on_arm do
-    sha256 "61a842490e3e40b10709d862de80186523c707c6ab69f30417c812bec0842936"
+    sha256 "6868f20ef2b1f9e4b0c7c4079120c39a08bcdc549fc72e7f04db8ac4e64a5132"
     url "https://github.com/josecruzchavez/gdw-mirror/releases/download/v#{version}/GDW-Mirror-Host-#{version}-arm64.zip"
   end
 
   on_intel do
-    sha256 "c315039b7aff28ddb0a00137cfe514f0bc85c1073269ffb5d293f8e3a3b0d9ac"
+    sha256 "811b538e009da4684583d7e1517950e8f8c1ddfd47df96d6a569b0d1aa0e7233"
     url "https://github.com/josecruzchavez/gdw-mirror/releases/download/v#{version}/GDW-Mirror-Host-#{version}-x64.zip"
   end
 
