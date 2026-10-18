@@ -1,0 +1,25 @@
+name: Audit cask
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: brew audit + style
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Audit
+        run: brew audit --cask --strict ./Casks/gdw-mirror.rb
+
+      - name: Style
+        run: brew style ./Casks/gdw-mirror.rb
+
+      - name: Livecheck
+        run: brew livecheck --cask ./Casks/gdw-mirror.rb
