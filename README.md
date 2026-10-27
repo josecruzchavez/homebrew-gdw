@@ -1,6 +1,6 @@
 # homebrew-gdw — tap de Homebrew para GDW Mirror
 
-Cask que instala **GDW Mirror Host** (macOS) desde los binarios publicados en GitHub Releases.
+Cask que instala **GDW Mirror** (macOS) desde los binarios publicados en GitHub Releases.
 
 ```
 gdw-mirror-cask/            # este repo se publica como  josecruzchavez/homebrew-gdw
@@ -50,25 +50,17 @@ brew uninstall --zap --cask gdw-mirror   # borra también preferencias y cachés
 
 - `on_arm` / `on_intel` eligen el `.zip` correcto y su SHA-256. Los dos binarios se
   publican en el mismo release.
-- `app "GDW Mirror Host.app"` copia la app a `/Applications`; no hay instalador.
+- `app "GDW Mirror.app"` copia la app a `/Applications`; no hay instalador.
 - `livecheck` con `:github_latest` detecta versiones nuevas del release.
 - `depends_on macos: ">= :ventura"`.
-- `caveats` explican la barra de menús, el permiso de grabación de pantalla y la firma ad-hoc.
+- `caveats` explican la barra de menús y el permiso de grabación de pantalla.
 
 ### Firma y cuarentena
 
-La app está firmada **ad-hoc**, sin Developer ID ni notarización. Homebrew 7 aplica el
-atributo de cuarentena a las descargas de casks, así que macOS bloqueará el primer
-arranque. El cask lo explica en `caveats`; el usuario autoriza una vez desde
-**Ajustes del Sistema → Privacidad y seguridad → Abrir de todas formas**, o ejecuta:
-
-```sh
-xattr -dr com.apple.quarantine "/Applications/GDW Mirror Host.app"
-```
-
-La única forma de eliminar el aviso por completo es un Developer ID de Apple con
-notarización. `brew audit` no falla por esto: la auditoría de firma solo se ejecuta en
-taps oficiales o con `--signing`.
+La app está firmada con **Developer ID** y notarizada por Apple. Aunque Homebrew
+aplique cuarentena a los cask, Gatekeeper puede verificar la firma y la notarización
+sin que el usuario tenga que quitarla manualmente. macOS solicitará permiso de
+**Grabación de pantalla** la primera vez que se comparta la pantalla.
 
 ## Actualizar el cask cuando salga una versión
 
